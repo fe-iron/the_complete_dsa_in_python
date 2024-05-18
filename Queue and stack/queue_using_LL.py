@@ -36,6 +36,30 @@ class Queue:
         self.linked_list.tail.next = new_node
         self.linked_list.tail = new_node
 
+    def isEmpty(self):
+        if not self.linked_list.head:
+            return True
+        return False
+    
+    def dequeue(self):
+        if self.isEmpty():
+            return "there is no element"
+        ele = self.linked_list.head.value
+        if self.linked_list.head == self.linked_list.tail:
+            self.linked_list.head = None
+            self.linked_list.tail = None
+        else:
+            self.linked_list.head = self.linked_list.head.next
+        return ele
+
+    def peek(self):
+        if self.isEmpty():
+            return "there is no element"
+        return self.linked_list.head.value
+    
+    def delete(self):
+        self.linked_list.head = None
+        self.linked_list.tail = None
 
 
 queue = Queue()
@@ -44,3 +68,7 @@ queue.enqueue(20)
 queue.enqueue(30)
 queue.enqueue(40)
 print(queue)
+print(queue.dequeue())
+print(queue)
+queue.enqueue(50)
+queue.peek()
