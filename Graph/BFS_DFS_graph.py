@@ -42,6 +42,29 @@ class Graph:
             return True
         return False
     
+    def bfs_traversal(self, vertex):
+        visited = set()
+        visited.add(vertex)
+        queue = [vertex]
+        while queue:
+            curr_vertex = queue.pop(0)
+            for item in self.gdict[curr_vertex]:
+                if item not in visited:
+                    visited.add(item)
+                    queue.append(item)
+        return visited
+                
+    def dfs_traversal(self, vertex):
+        visited = set()
+        stack = [vertex]
+        while stack:
+            curr_vertex = stack.pop()
+            if curr_vertex not in visited:
+                print(curr_vertex)
+                visited.add(curr_vertex)
+            for item in self.gdict[curr_vertex]:
+                if item not in visited:
+                    stack.append(item)
 
 cust_dict = {
     "A": ["B", "C"],
@@ -56,6 +79,5 @@ graph = Graph(cust_dict)
 graph.add_vertex_with_edge("Z", "A")
 graph.add_edge("Z", "A")
 graph.print_graph()
-graph.remove_edge("A", "Z")
-graph.print_graph()
-graph.remove_vertex("A")
+graph.bfs_traversal("A")
+graph.dfs_traversal("A")
